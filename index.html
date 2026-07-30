@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For Snigdha ❤️</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div id="stars" aria-hidden="true"></div>
+  <div id="hearts" aria-hidden="true"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title">Hello Snigdha ����</h2>
+      <h1>Happy Girlfriend Day ❤️</h1>
+      <p>I made something special...<br>Just for you.</p>
+      <button id="startBtn" class="primary" aria-controls="letter">Open My Heart ❤️</button>
+    </section>
+
+    <!-- LETTER -->
+    <section id="letter" class="hidden" aria-labelledby="letter-title">
+      <div class="letter-box" role="region" aria-live="polite">
+        <h2 id="letter-title">💌 A Letter For You</h2>
+        <p id="typewriter" class="typewriter" aria-atomic="true"></p>
+        <button id="nextBtn" class="primary" aria-controls="gallery">Continue ❤️</button>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="hidden" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Our Beautiful Memories 📸</h2>
+
+      <div class="photos" role="list">
+        <button class="photo-btn" data-index="0" role="listitem" aria-label="Open photo 1">
+          <img src="images/photo1.jpg" alt="Portrait: person in white outfit beside window, wearing glasses" loading="lazy">
+        </button>
+
+        <button class="photo-btn" data-index="1" role="listitem" aria-label="Open photo 2">
+          <img src="images/photo2.jpg" alt="Two soft-focus portraits of the same person wearing red; dreamy collage style" loading="lazy">
+        </button>
+
+        <button class="photo-btn" data-index="2" role="listitem" aria-label="Open photo 3">
+          <img src="images/photo3.jpg" alt="Person mid-dance in a bright red saree with a colorful pallu, wearing glasses" loading="lazy">
+        </button>
+      </div>
+
+      <button id="galleryNext" class="primary" aria-controls="reasons">Next ❤️</button>
+    </section>
+
+    <!-- REASONS -->
+    <section id="reasons" class="hidden" aria-labelledby="reasons-title">
+      <h2 id="reasons-title">Why You're So Special ❤️</h2>
+
+      <div class="reason-card">🌸 Your smile brightens my day.</div>
+      <div class="reason-card">✨ You make ordinary moments feel unforgettable.</div>
+      <div class="reason-card">💖 You are one of the most wonderful people I've ever met.</div>
+
+      <button id="reasonNext" class="primary" aria-controls="proposal">Continue 🌙</button>
+    </section>
+
+    <!-- PROPOSAL -->
+    <section id="proposal" class="hidden" aria-labelledby="proposal-title">
+      <div class="proposal-box">
+        <h2 id="proposal-title">Dear Snigdha ❤️</h2>
+        <h1>Will You Be My Girlfriend?</h1>
+        <p>No matter what your answer is, thank you for taking the time to explore this little surprise. It was made with lots of care, just for you.</p>
+
+        <div class="proposal-buttons" role="group" aria-label="proposal choices">
+          <button id="yesBtn" class="primary">Yes ❤️</button>
+          <button id="laterBtn" class="secondary">I Need More Time 🌸</button>
+        </div>
+
+        <p id="finalMessage" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX / MODAL -->
+  <div id="lightbox" class="hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Image viewer">
+    <button id="lbClose" class="lb-close" aria-label="Close (Esc)">✕</button>
+    <button id="lbPrev" class="lb-nav" aria-label="Previous image">‹</button>
+    <figure class="lb-content">
+      <img id="lbImage" src="" alt="">
+      <figcaption id="lbCaption"></figcaption>
+    </figure>
+    <button id="lbNext" class="lb-nav" aria-label="Next image">›</button>
+  </div>
+
+  <!-- confetti canvas -->
+  <canvas id="confetti-canvas" class="hidden" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
