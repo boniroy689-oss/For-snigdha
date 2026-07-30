@@ -1,0 +1,369 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#020617;
+    color:white;
+    overflow-x:hidden;
+}
+
+#stars{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px);
+    background-size:80px 80px,120px 120px;
+    background-position:0 0,40px 40px;
+    opacity:.35;
+    z-index:-2;
+    animation:starsMove 80s linear infinite;
+}
+
+@keyframes starsMove{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-500px);
+    }
+
+}
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+.hero h2{
+
+    font-family:'Dancing Script',cursive;
+
+    font-size:42px;
+
+    color:#ffd166;
+
+}
+
+.hero h1{
+
+    font-size:52px;
+
+    margin:20px 0;
+
+    text-shadow:0 0 20px #ff4d6d;
+
+}
+
+.hero p{
+
+    max-width:500px;
+
+    color:#ddd;
+
+    line-height:1.8;
+
+    font-size:20px;
+
+}
+
+button{
+
+    margin-top:35px;
+
+    padding:15px 40px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:#ff4d6d;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:scale(1.08);
+
+    box-shadow:0 0 25px #ff4d6d;
+
+}
+/* Hidden Sections */
+
+.hidden{
+    display:none;
+}
+
+/* Letter */
+
+#letter{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+
+.letter-box{
+
+    max-width:700px;
+
+    width:100%;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    text-align:center;
+
+}
+
+.letter-box h2{
+
+    color:#ff4d6d;
+
+    margin-bottom:25px;
+
+}
+
+#typewriter{
+
+    line-height:2;
+
+    color:#ddd;
+
+    font-size:18px;
+
+}
+
+/* Gallery */
+
+#gallery{
+
+    min-height:100vh;
+
+    padding:50px 20px;
+
+    text-align:center;
+
+}
+
+.photos{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-top:40px;
+
+}
+
+.photos img{
+
+    width:220px;
+
+    height:320px;
+
+    object-fit:cover;
+
+    border-radius:25px;
+
+    border:4px solid white;
+
+    transition:.4s;
+
+}
+
+.photos img:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* Reasons */
+
+#reasons{
+
+    min-height:100vh;
+
+    text-align:center;
+
+    padding:40px 20px;
+
+}
+
+.reason-card{
+
+    max-width:650px;
+
+    margin:20px auto;
+
+    background:rgba(255,255,255,.08);
+
+    padding:20px;
+
+    border-radius:20px;
+
+    font-size:20px;
+
+}
+/* Proposal */
+
+#proposal{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+}
+
+.proposal-box{
+    max-width:700px;
+    width:100%;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:25px;
+    padding:40px;
+}
+
+.proposal-box h2{
+    font-family:'Dancing Script',cursive;
+    color:#ffd166;
+    font-size:42px;
+}
+
+.proposal-box h1{
+    margin:20px 0;
+    color:#ff4d6d;
+    font-size:48px;
+}
+
+.proposal-box p{
+    color:#ddd;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.proposal-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+#finalMessage{
+    margin-top:30px;
+    font-size:22px;
+    color:#fff;
+    min-height:60px;
+}
+
+/* Floating Hearts */
+
+#hearts{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.heart{
+    position:absolute;
+    bottom:-40px;
+    color:#ff4d6d;
+    font-size:22px;
+    animation:floatHeart linear forwards;
+}
+
+@keyframes floatHeart{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+.hero h1{
+    font-size:36px;
+}
+
+.hero h2{
+    font-size:34px;
+}
+
+.photos img{
+    width:170px;
+    height:240px;
+}
+
+.proposal-box h1{
+    font-size:34px;
+}
+
+.proposal-box h2{
+    font-size:32px;
+}
+
+button{
+    width:100%;
+    max-width:300px;
+}
+
+}
