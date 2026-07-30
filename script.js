@@ -1,4 +1,4 @@
-// Elements
+// Elements (safe guards)
 const hero = document.querySelector(".hero");
 const letter = document.getElementById("letter");
 const gallery = document.getElementById("gallery");
@@ -34,14 +34,17 @@ Thank you for being such a wonderful person.
 
 — Boni ❤️`;
 
-// Start / Typewriter
-startBtn.addEventListener("click", () => {
-  hero.classList.add("hidden");
-  letter.classList.remove("hidden");
-  runTypewriter(typeTarget, message, 35);
-});
+// Start / Typewriter (guarded)
+if (startBtn) {
+  startBtn.addEventListener("click", () => {
+    hero?.classList.add("hidden");
+    letter?.classList.remove("hidden");
+    runTypewriter(typeTarget, message, 28);
+  });
+}
 
 function runTypewriter(targetEl, text, speed) {
+  if (!targetEl) return;
   targetEl.textContent = "";
   let i = 0;
   function step() {
@@ -49,47 +52,49 @@ function runTypewriter(targetEl, text, speed) {
       targetEl.textContent += text.charAt(i);
       i++;
       setTimeout(step, speed);
-    } else {
-      // finished
     }
   }
   step();
 }
 
-// Navigation buttons
-nextBtn.addEventListener("click", () => {
-  letter.classList.add("hidden");
-  gallery.classList.remove("hidden");
-  gallery.focus?.();
+// Navigation buttons (guarded)
+nextBtn?.addEventListener("click", () => {
+  letter?.classList.add("hidden");
+  gallery?.classList.remove("hidden");
+  // focus first photo button for keyboard users
+  setTimeout(() => gallery?.querySelector('.photo-btn')?.focus(), 80);
 });
 
-galleryNext.addEventListener("click", () => {
-  gallery.classList.add("hidden");
-  reasons.classList.remove("hidden");
+galleryNext?.addEventListener("click", () => {
+  gallery?.classList.add("hidden");
+  reasons?.classList.remove("hidden");
 });
 
-reasonNext.addEventListener("click", () => {
-  reasons.classList.add("hidden");
-  proposal.classList.remove("hidden");
+reasonNext?.addEventListener("click", () => {
+  reasons?.classList.add("hidden");
+  proposal?.classList.remove("hidden");
 });
 
-// Floating hearts (gentle falling hearts)
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerText = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (12 + Math.random() * 18) + "px";
-  heart.style.animationDuration = (3 + Math.random() * 4) + "s";
-  document.getElementById("hearts").appendChild(heart);
-  setTimeout(() => heart.remove(), 8000);
-}, 600);
+// Floating hearts (gentle falling hearts) - reduced frequency
+const heartsContainer = document.getElementById('hearts');
+if (heartsContainer) {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 18) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 5) + "s";
+    heartsContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 9000);
+  }, 900);
+}
 
 // PROPOSAL BUTTONS
 const yesBtn = document.getElementById("yesBtn");
 const laterBtn = document.getElementById("laterBtn");
 
-yesBtn.addEventListener("click", () => {
+yesBtn?.addEventListener("click", () => {
   finalMessage.innerHTML = `
     ❤️ Thank you, Snigdha ❤️
     <br><br>
@@ -100,7 +105,7 @@ yesBtn.addEventListener("click", () => {
   fireConfetti();
 });
 
-laterBtn.addEventListener("click", () => {
+laterBtn?.addEventListener("click", () => {
   finalMessage.innerHTML = `
     🌸 It's completely okay.
     <br><br>
@@ -133,31 +138,33 @@ document.querySelectorAll(".photo-btn").forEach(btn => {
 function openLightbox(index) {
   currentIndex = index;
   const p = photos[index];
+  if (!p) return;
   lbImage.src = p.src;
   lbImage.alt = p.alt;
   lbCaption.textContent = p.alt;
-  lightbox.classList.remove("hidden");
-  lightbox.setAttribute("aria-hidden", "false");
+  lightbox?.classList.remove("hidden");
+  lightbox?.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden"; // freeze background scroll
-  lbClose.focus();
+  lbClose?.focus();
 }
 
 // close lightbox
 function closeLightbox() {
-  lightbox.classList.add("hidden");
-  lightbox.setAttribute("aria-hidden", "true");
+  lightbox?.classList.add("hidden");
+  lightbox?.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
   // return focus to gallery
-  gallery.querySelector(".photo-btn")?.focus();
+  gallery?.querySelector(".photo-btn")?.focus();
 }
 
-lbClose.addEventListener("click", closeLightbox);
-lbPrev.addEventListener("click", () => showLightboxIndex(currentIndex - 1));
-lbNext.addEventListener("click", () => showLightboxIndex(currentIndex + 1));
+lbClose?.addEventListener("click", closeLightbox);
+lbPrev?.addEventListener("click", () => showLightboxIndex(currentIndex - 1));
+lbNext?.addEventListener("click", () => showLightboxIndex(currentIndex + 1));
 
 function showLightboxIndex(nextIndex) {
   currentIndex = (nextIndex + photos.length) % photos.length;
   const p = photos[currentIndex];
+  if (!p) return;
   lbImage.src = p.src;
   lbImage.alt = p.alt;
   lbCaption.textContent = p.alt;
@@ -165,16 +172,16 @@ function showLightboxIndex(nextIndex) {
 
 // keyboard support
 document.addEventListener("keydown", (e) => {
-  if (!lightbox.classList.contains("hidden")) {
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft") showLightboxIndex(currentIndex - 1);
-    if (e.key === "ArrowRight") showLightboxIndex(currentIndex + 1);
-  }
+  if (!lightbox || lightbox.classList.contains("hidden")) return;
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowLeft") showLightboxIndex(currentIndex - 1);
+  if (e.key === "ArrowRight") showLightboxIndex(currentIndex + 1);
 });
 
 // CONFETTI (canvas-based, small and lightweight)
 function fireConfetti() {
   const canvas = document.getElementById("confetti-canvas");
+  if (!canvas) return;
   canvas.classList.remove("hidden");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -226,6 +233,7 @@ function fireConfetti() {
 // Resize confetti canvas on window resize
 window.addEventListener("resize", () => {
   const canvas = document.getElementById("confetti-canvas");
+  if (!canvas) return;
   if (!canvas.classList.contains("hidden")) {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
